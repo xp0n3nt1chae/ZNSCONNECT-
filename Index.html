@@ -1,162 +1,173 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZNS Connect - Gamified Profile</title>
-    <style class="style">
-      * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Arial', sans-serif;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZNSCONNECT</title>
 
+  <style>
+/* General Styles */
 body {
-    background-color: #0d1117;
-    color: #c9d1d9;
-    display: flex;
-    flex-direction: column;
-    
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #0d0d24;
+  color: #fff;
 }
 
-header {
-    background-color: #161b22;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #1b1b38;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #58a6ff;
+.navbar h1 {
+  color: #00e6ff;
 }
 
-button {
-    background-color: #238636;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 15px;
 }
 
-main {
-    display: flex;
-    flex-grow: 1;
-    padding: 20px;
-    gap: 20px;
+.navbar li {
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
+.navbar li:hover {
+  color: #ff00ff;
+}
+
+/* Dashboard */
 .dashboard {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 50px;
 }
 
-.badge-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+.profile-card {
+  text-align: center;
+  background-color: #1a1a40;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
-.badge {
-    width: 70px;
-    height: 70px;
-    background-color: #21262d;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
+.avatar {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
 }
 
-aside.leaderboard {
-    flex: 1;
-    background-color: #21262d;
-    padding: 20px;
-    border-radius: 10px;
+.progress-bar {
+  background-color: #333;
+  border-radius: 10px;
+  height: 20px;
+  width: 100%;
+  margin-top: 10px;
 }
 
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #161b22;
+.progress {
+  background: linear-gradient(90deg, #00e6ff, #ff00ff);
+  height: 100%;
+  border-radius: 10px;
 }
 
+/* Task Cards */
+.task-cards {
+  display: flex;
+  gap: 20px;
+}
 
-    </style>
+.task-card {
+  background-color: #252545;
+  padding: 15px;
+  border-radius: 10px;
+  width: 200px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.glow-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  background-color: #1e1e70;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff00ff, 0 0 20px #00e6ff;
+  transition: all 0.3s;
+}
+
+.glow-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #00e6ff, 0 0 30px #ff00ff;
+}
+</style>
+
 </head>
 <body>
-    <header>
-        <div class="logo">ZNS Connect</div>
-        <button id="login-btn">Login</button>
-    </header>
+  <div class="navbar">
+    <h1>ZNSCONNECT</h1>
+    <ul>
+      <li>Games</li>
+      <li>Missions</li>
+      <li>Leaderboards</li>
+      <li>Marketplace</li>
+    </ul>
+  </div>
 
-    <main>
-        <section class="dashboard">
-            <div class="user-stats">
-                <h2>Welcome, User!</h2>
-                <p>Active Streak: <span id="streak">5 days</span></p>
-                <p>Total Badges Earned: <span id="badge-count">12</span></p>
-            </div>
+  <div class="dashboard">
+    <div class="profile-card">
+      <img src="avatar.png" alt="User Avatar" class="avatar">
+      <h2>@Username</h2>
+      <p>XP: <span id="xp-progress">1450 / 2000</span></p>
+      <div class="progress-bar">
+        <div class="progress" style="width: 72%;"></div>
+      </div>
+    </div>
 
-            <div class="badge-container">
-                <h3>Your Badges</h3>
-                <div id="badges">
-                    <!-- Badges dynamically loaded here -->
-                </div>
-            </div>
+    <div class="task-cards">
+      <div class="task-card">
+        <h3>Daily Quest</h3>
+        <p>Complete 3 missions to earn 100 XP.</p>
+        <button class="glow-btn">Start Now</button>
+      </div>
+      <div class="task-card">
+        <h3>Social Task</h3>
+        <p>Invite a friend to earn bonus XP.</p>
+        <button class="glow-btn">Invite</button>
+      </div>
+    </div>
+  </div>
 
-            <div class="challenges">
-                <h3>Daily & Weekly Challenges</h3>
-                <ul id="challenge-list">
-                    <li>Register a new ZNS domain - 50 XP</li>
-                    <li>Stake 5 tokens for 7 days - 100 XP</li>
-                </ul>
-            </div>
-        </section>
+  <script>
+
+// Example of live XP tracking
+let xpProgress = document.getElementById('xp-progress');
+let currentXP = 1450;
+
+function earnXP(points) {
+  currentXP += points;
+  xpProgress.textContent = `${currentXP} / 2000`;
+
+  if (currentXP >= 2000) {
+    alert('Level up!');
+    currentXP = 0; // Reset for next level
+  }
+}
+
+// Simulate earning XP every 5 seconds
+setInterval(() => earnXP(50), 5000);
+</script>
 
 
-        <aside class="leaderboard">
-            <h3>Top Users</h3>
-            <ul id="leaderboard">
-                <li>@cryptoWhale - 520 XP</li>
-                <li>@metaMaster - 490 XP</li>
-                <li>@blockGuru - 470 XP</li>
-            </ul>
-        </aside>
-    </main>
-
-
-    
-
-    <footer>
-        <p>© 2024 ZNS Connect | Powered by Web3</p>
-    </footer>
-
-    <script class="script">
-      
-      document.addEventListener("DOMContentLoaded", () => {
-    const badges = ["🌟", "🔥", "🎯", "🏆"];
-    const badgeContainer = document.getElementById("badges");
-
-    badges.forEach((badge) => {
-        const badgeElement = document.createElement("div");
-        badgeElement.classList.add("badge");
-        badgeElement.textContent = badge;
-        badgeContainer.appendChild(badgeElement);
-    });
-
-    document.getElementById("login-btn").addEventListener("click", () => {
-        alert("Login feature coming soon!");
-    });
-});
-
-        
-    </script>
 </body>
 </html>
