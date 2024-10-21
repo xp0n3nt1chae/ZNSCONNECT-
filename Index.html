@@ -86,6 +86,63 @@ footer {
     padding: 10px;
     background-color: #161b22;
 }
+
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #161b22;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #58a6ff;
+}
+
+button {
+    background-color: #238636;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+.intro, .features, .wallet-info {
+    margin-bottom: 30px;
+}
+
+ul {
+    list-style: none;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #161b22;
+}
     </style>
 </head>
 <body>
@@ -128,6 +185,30 @@ footer {
         </aside>
     </main>
 
+    <p>
+        <section class="intro">
+            <h1>What is ZNS Connect?</h1>
+            <p>ZNS Connect is a decentralized name service provider, empowering users to own and manage unique identities on Web3. By integrating with the blockchain, ZNS provides seamless, secure, and censorship-resistant naming solutions for dApps, digital identities, and more.</p>
+        </section>
+
+        <section class="features">
+            <h2>Why Choose ZNS?</h2>
+            <ul>
+                <li>💡 <b>Decentralization:</b> No single point of control.</li>
+                <li>🔐 <b>Security:</b> Cryptographic ownership of domains.</li>
+                <li>🌐 <b>Web3 Integration:</b> Use your ZNS across dApps.</li>
+                <li>🚀 <b>Future-Ready:</b> Scalable and adaptable naming system.</li>
+            </ul>
+        </section>
+
+        <section class="wallet-info">
+            <h2>Your Wallet Information</h2>
+            <p id="wallet-address">Wallet Address: Not connected</p>
+        </section>
+    </p>
+
+    
+
     <footer>
         <p>© 2024 ZNS Connect | Powered by Web3</p>
     </footer>
@@ -150,6 +231,34 @@ footer {
     });
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    const connectWalletButton = document.getElementById("connect-wallet");
+    const walletAddressDisplay = document.getElementById("wallet-address");
+
+    // Check if MetaMask is installed
+    if (typeof window.ethereum !== "undefined") {
+        connectWalletButton.addEventListener("click", async () => {
+            try {
+                // Request wallet connection
+                const accounts = await ethereum.request({
+                    method: "eth_requestAccounts"
+                });
+
+                const walletAddress = accounts[0];
+                walletAddressDisplay.textContent = `Wallet Address: ${walletAddress}`;
+            } catch (error) {
+                console.error("User rejected connection:", error);
+            }
+        });
+    } else {
+        connectWalletButton.textContent = "Install MetaMask";
+        connectWalletButton.addEventListener("click", () => {
+            window.open("https://metamask.io/download.html", "_blank");
+        });
+    }
+});
+
+        
     </script>
 </body>
 </html>
