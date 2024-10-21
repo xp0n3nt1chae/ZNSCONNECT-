@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZNS Connect - Gamified Profile</title>
+    <style class="style">
+      * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #161b22;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #58a6ff;
+}
+
+button {
+    background-color: #238636;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+main {
+    display: flex;
+    flex-grow: 1;
+    padding: 20px;
+    gap: 20px;
+}
+
+.dashboard {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.badge {
+    width: 70px;
+    height: 70px;
+    background-color: #21262d;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+}
+
+aside.leaderboard {
+    flex: 1;
+    background-color: #21262d;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #161b22;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">ZNS Connect</div>
+        <button id="login-btn">Login</button>
+    </header>
+
+    <main>
+        <section class="dashboard">
+            <div class="user-stats">
+                <h2>Welcome, User!</h2>
+                <p>Active Streak: <span id="streak">5 days</span></p>
+                <p>Total Badges Earned: <span id="badge-count">12</span></p>
+            </div>
+
+            <div class="badge-container">
+                <h3>Your Badges</h3>
+                <div id="badges">
+                    <!-- Badges dynamically loaded here -->
+                </div>
+            </div>
+
+            <div class="challenges">
+                <h3>Daily & Weekly Challenges</h3>
+                <ul id="challenge-list">
+                    <li>Register a new ZNS domain - 50 XP</li>
+                    <li>Stake 5 tokens for 7 days - 100 XP</li>
+                </ul>
+            </div>
+        </section>
+
+        <aside class="leaderboard">
+            <h3>Top Users</h3>
+            <ul id="leaderboard">
+                <li>@cryptoWhale - 520 XP</li>
+                <li>@metaMaster - 490 XP</li>
+                <li>@blockGuru - 470 XP</li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer>
+        <p>© 2024 ZNS Connect | Powered by Web3</p>
+    </footer>
+
+    <script class="script">
+      
+      document.addEventListener("DOMContentLoaded", () => {
+    const badges = ["🌟", "🔥", "🎯", "🏆"];
+    const badgeContainer = document.getElementById("badges");
+
+    badges.forEach((badge) => {
+        const badgeElement = document.createElement("div");
+        badgeElement.classList.add("badge");
+        badgeElement.textContent = badge;
+        badgeContainer.appendChild(badgeElement);
+    });
+
+    document.getElementById("login-btn").addEventListener("click", () => {
+        alert("Login feature coming soon!");
+    });
+});
+
+    </script>
+</body>
+</html>
